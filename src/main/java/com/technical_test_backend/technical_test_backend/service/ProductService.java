@@ -18,6 +18,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriComponentsBuilder;
+import com.technical_test_backend.technical_test_backend.model.ProductDetail;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -30,31 +31,6 @@ public class ProductService {
 
     public ProductService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
-    }
-
-    // Clase auxiliar para manejar el ID del producto y sus detalles
-    private static class ProductDetail {
-        private final Number productId;
-        private final Map<String, Object> productData;
-        private final boolean timeout;
-
-        public ProductDetail(Number productId, Map<String, Object> productData, boolean timeout) {
-            this.productId = productId;
-            this.productData = productData;
-            this.timeout = timeout;
-        }
-
-        public Number getProductId() {
-            return productId;
-        }
-
-        public Map<String, Object> getProductData() {
-            return productData;
-        }
-
-        public boolean isTimeout() {
-            return timeout;
-        }
     }
 
     // Función que genera la respuesta final que devuelva la llamada a la api
