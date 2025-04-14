@@ -43,7 +43,13 @@ How to run the project:
     cd technical-test-backend
     ```
 
-3.Arranca la api:
+3.instalar dependencias:
+
+    ```bash
+    mvn clean install
+    ```
+
+  4.Arranca la api:
 
     ```bash
     mvn spring-boot:run

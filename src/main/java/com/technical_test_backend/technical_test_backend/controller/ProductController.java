@@ -19,8 +19,7 @@ public class ProductController {
     }
 
     @GetMapping("/product/{productId}/similar")
-    public ResponseEntity<List<Map<String, Object>>> getSimilarProducts(
-            @PathVariable Number productId) {
+    public ResponseEntity<List<Map<String, Object>>> getSimilarProducts(@PathVariable Number productId) {
         List<Map<String, Object>> similarProducts = productService.getSimilarProducts(productId);
         return ResponseEntity.ok(similarProducts);
     }
