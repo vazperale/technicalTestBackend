@@ -110,7 +110,7 @@ public class ProductService {
                 if (productDetail != null && productDetail.getProductData() != null) {
                     similarProducts.add(productDetail.getProductData());
                 } else if (productDetail != null && productDetail.isTimeout()) {
-                    logger.warn("Product with ID {} ​​skipped due to timeout", productDetail.getProductId());
+                    logger.warn("Product with ID {} skipped due to timeout", productDetail.getProductId());
                 }
             } catch (InterruptedException | ExecutionException e) {
                 logger.error("Error waiting for results from asynchronous task", e);
