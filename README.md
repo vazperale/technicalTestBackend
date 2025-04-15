@@ -27,6 +27,7 @@ Obtiene la información de los productos similares a un producto dado.
     "availability": false
   }
 ]
+```
 
 
 How to run the project:
