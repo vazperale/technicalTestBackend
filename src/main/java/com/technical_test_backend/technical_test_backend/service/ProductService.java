@@ -56,7 +56,7 @@ public class ProductService {
             return restTemplate.getForObject(urlSimilarIds, Number[].class);
         } catch (HttpClientErrorException.NotFound e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, 
-                "Sin productos similares asignados o producto con id " + productId + " no existente");
+                "No similar products assigned or product with id " + productId + " does not exist");
         }
     }
 
@@ -89,13 +89,13 @@ public class ProductService {
                         new ParameterizedTypeReference<Map<String, Object>>() {});
                 return new ProductDetail(id, response.getBody(), false);
             } catch (Exception e) {
-                logger.error("Error al obtener los detalles del producto con ID " + id);
-                return new ProductDetail(id, null, false); // Error no relacionado con timeout
+                logger.error("Error getting product details with ID " + id);
+                return new ProductDetail(id, null, false); 
             }
         })
-        .completeOnTimeout(new ProductDetail(id, null, true), TIMEOUT, TimeUnit.SECONDS) // Indica timeout explícitamente
+        .completeOnTimeout(new ProductDetail(id, null, true), TIMEOUT, TimeUnit.SECONDS) 
         .exceptionally(ex -> {
-            logger.error("Ocurrió un error inesperado durante la ejecución de la tarea asíncrona");
+            logger.error("An unexpected error occurred during the execution of the asynchronous task");
             return new ProductDetail(id, null, false);
         });
     }
@@ -110,10 +110,10 @@ public class ProductService {
                 if (productDetail != null && productDetail.getProductData() != null) {
                     similarProducts.add(productDetail.getProductData());
                 } else if (productDetail != null && productDetail.isTimeout()) {
-                    logger.warn("Producto con ID {} omitido debido a timeout.", productDetail.getProductId());
+                    logger.warn("Product with ID {} ​​skipped due to timeout", productDetail.getProductId());
                 }
             } catch (InterruptedException | ExecutionException e) {
-                logger.error("Error al esperar los resultados de la tarea asincrónica", e);
+                logger.error("Error waiting for results from asynchronous task", e);
             }
         }
 
