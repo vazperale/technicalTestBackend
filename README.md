@@ -29,7 +29,6 @@ Obtiene la información de los productos similares a un producto dado.
 ]
 ```
 
-
 How to run the project:
 
 1. Clone the repository in a folder:
